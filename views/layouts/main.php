@@ -1,5 +1,10 @@
+<?php
+
+use yii\bootstrap\NavBar;
+
+?>
 <?php $this->beginPage() ?>
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
     <title>VideoSchool</title>
@@ -7,10 +12,22 @@
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?= $content ?>
+<?php
+NavBar::begin([
+    'brandLabel' => 'VideoSchool',
+    'brandUrl' => Yii::$app->homeUrl,
+    'options' => [
+        'class' => 'navbar-default navbar-fixed-top'
+    ]
+]);
 
+NavBar::end();
+?>
+<div class="container" style="margin-top: 70px">
+    <?= $content ?>
+
+</div>
 <?php $this->endBody() ?>
-
 </body>
 </html>
 <?php $this->endPage() ?>
