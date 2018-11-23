@@ -8,17 +8,14 @@ $I->wantTo('New users join and login');
 $user1 = $I->imagineUser();
 $user2 = $I->imagineUser();
 
-$I->amOnPage('/user/login');
 $I->loginUser($user1);
 $I->see("This e-mail does not registered");
 
-$I->amOnPage('/user/join');
 $I->joinUser($user1);
 $I->joinUser($user2);
 $I->joinUser($user1);
 $I->see("This e-mail already exists");
 
-$I->amOnPage('/user/login');
 
 $I->loginUser($user1);
 $I->isUserLogged($user1);
