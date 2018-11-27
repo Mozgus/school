@@ -13,6 +13,9 @@ return [
             'cookieValidationKey' => 'kaja7iarna7dsn92bgt78fan',
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'user' => [
+            'identityClass' => 'app\models\UserIdentity'
+        ]
     ],
     'modules' => [
         'debug' => [
