@@ -20,9 +20,15 @@ class UserController extends Controller
 
     public function actionLogin()
     {
-        $uid = UserIdentity::findIdentity(mt_rand(2, 6));
-        Yii::$app->user->login($uid);
+//        $uid = UserIdentity::findIdentity(mt_rand(2, 6));
+//        Yii::$app->user->login($uid);
         return $this->render("login");
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+        return $this->redirect("/");
     }
 
 }

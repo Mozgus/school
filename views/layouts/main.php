@@ -21,10 +21,20 @@ NavBar::begin([
         'class' => 'navbar-default navbar-fixed-top'
     ]
 ]);
-$menu = [
-    ['label' => 'Join', 'url' => ['/user/join']],
-    ['label' => 'Login', 'url' => ['/user/login']]
-];
+if (Yii::$app->user->isGuest)
+    $menu = [
+        ['label' => 'Join', 'url' => ['/user/join']],
+        ['label' => 'Login', 'url' => ['/user/login']]
+    ];
+else
+    try {
+        $menu = [
+            ['label' => Yii::$app->user->getIdentity()->name],
+            ['label' => 'Logout', 'url' => ['/user/logout']]
+        ];
+    } /** @noinspection PhpUndefinedClassInspection */
+    catch (Throwable $e) {
+    }
 try {
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
