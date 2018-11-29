@@ -17,9 +17,16 @@ class UserController extends Controller
         //$userRecord->save();
 
         $userJoinForm = new UserJoinForm();
-        return $this->render("join",
-            ['userJoinForm' => $userJoinForm]
-        );
+        return $this->render("join", compact('userJoinForm'));
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'email' => 'Адрес эл. почты:',
+            'password' => 'Придумайте пароль:',
+            'password2' => 'Повторите пароль:'
+        ];
     }
 
     public function actionLogin()
