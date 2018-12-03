@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\UserJoinForm;
+use app\models\UserLoginForm;
 use app\models\UserRecord;
 use Yii;
 use yii\web\Controller;
@@ -45,9 +46,8 @@ class UserController extends Controller
 
     public function actionLogin()
     {
-//        $uid = UserIdentity::findIdentity(mt_rand(2, 6));
-//        Yii::$app->user->login($uid);
-        return $this->render("login");
+        $userLoginForm = new UserLoginForm();
+        return $this->render('login', compact('userLoginForm'));
     }
 
     public function actionLogout()
