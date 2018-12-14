@@ -56,7 +56,7 @@ class UserIdentity extends UserRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        // TODO: Implement getAuthKey() method.
+        return $this->email;
     }
 
     /**
@@ -69,6 +69,6 @@ class UserIdentity extends UserRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        // TODO: Implement validateAuthKey() method.
+        return $this->getAuthKey() === $authKey;
     }
 }
