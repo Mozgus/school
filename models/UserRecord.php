@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii;
 use yii\db\ActiveRecord;
 
 class UserRecord extends ActiveRecord
@@ -16,7 +17,7 @@ class UserRecord extends ActiveRecord
         $faker = \Faker\Factory::create();
         $this->name = $faker->name;
         $this->email = $faker->email;
-        $this->passhash = $faker->password;
+        $this->setPassword($faker->password);
         $this->status = $faker->randomDigit;
     }
 
@@ -35,8 +36,19 @@ class UserRecord extends ActiveRecord
     {
         $this->name = $userJoinForm->name;
         $this->email = $userJoinForm->email;
-        $this->passhash = $userJoinForm->password;
+        $this->setPassword($userJoinForm->password);
         $this->status = 1;
+    }
+
+    public function setPassword($password)
+    {
+        $this->passhash = Yii::$app->security->generatePasswordHash($password);
+        $this->authokey = Yii::$app->security->generateRandomString(100);
+    }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->passhash);
     }
 
 }
